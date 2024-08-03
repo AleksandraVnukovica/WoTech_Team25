@@ -1,0 +1,20 @@
+# How many Pokémons are with 'Type 1' == Water as a % of total?
+water_type = pokemon_df['Type 1'] == 'Water' # how many is water pokemons
+print(f'Water pokemons: {water_type.sum()}')
+water_pokemon_percent = (water_type.sum() / pokemon_df.shape[0]) * 100 # calculating water pokemon % of total
+print(f'Water pokemons % of total: {water_pokemon_percent}')
+
+# What is the maximum 'Speed' value? What is the minimum 'Speed' value? What is the difference between max and min 'Speed'?
+max_speed = pokemon_df['Speed'].max()
+min_speed = pokemon_df['Speed'].min()
+speed_difference = max_speed - min_speed
+print(f'Maximal speed value: {max_speed}, minimal speed value: {min_speed}, difference: {speed_difference}')
+
+# Filter the DataFrame to include only the Pokémon with 'Speed' >= 80. How many Pokémon meet this criterion? Display this DataFrame using your preferred visualization method.
+speed_above_80_df = pokemon_df[pokemon_df['Speed'] >= 80] #filtering pokemons with speed >80
+print(f'Pokemons with speed above 80: {speed_above_80.sum()}') # counting how many pokemons meets this criteria
+speed_above_80_df.hist(column = 'Speed', color = 'darkblue', edgecolor = 'black', alpha = 0.8) # creating visualization
+plt.title('Pokemon count by speed')
+plt.xlabel('Speed')
+plt.ylabel('Count')
+plt.grid(linestyle = '--', alpha = 0.5)
