@@ -1,0 +1,44 @@
+#EASY: add DecisionTreeClassifier to titanic data predictions. 
+
+from sklearn.tree import DecisionTreeClassifier
+
+# Initialize the DecisionTreeClassifier model
+model = DecisionTreeClassifier()
+
+# Train the model on the training data
+model.fit(X_train, y_train)
+
+# Make predictions on the test data
+prediction_results = model.predict(X_test)
+
+# Display the predictions
+prediction_results
+
+#HARD: Investigate what is cross-validation and implement cross-validation on any classification model you prefer on Titanic data. Explain to each other, what do you see. 
+from sklearn.neighbors import KNeighborsClassifier # class used to create and train a K-Nearest Neighbors model for classification tasks
+from sklearn.model_selection import KFold, cross_val_score # 'KFold' for splitting data; 'cross_val_score' to evaluate model's performance
+
+# Initializing the model
+model_knn_cv = KNeighborsClassifier()
+
+# Defining KFold cross-validator
+k_fold = KFold(n_splits=10, shuffle=True, random_state=42)
+
+# Evaluating the model using cross-validation
+accuracy_scores = cross_val_score(model_knn_cv, X, y, cv=k_fold, scoring='accuracy')
+
+# Output of the accuracy scores for each fold
+print("Accuracy scores for each fold:", accuracy_scores)
+
+# Output of the mean accuracy across all folds
+print("Mean accuracy:", accuracy_scores.mean())
+
+The **DecisionTreeClassifier** is like a game of 20 questions, but for a computer! Imagine you have a bunch of different things, like animals, and you want to figure out which animal it is by asking yes or no questions.
+
+For example:
+- "Does it have four legs?"
+- "Can it fly?"
+
+Each question helps you narrow down the possibilities until you can make a decision. 
+
+The **DecisionTreeClassifier** works the same way. It asks a series of questions about your data (like "Is the age greater than 12?") to decide which category something belongs to. In the case of the Titanic, it might decide if a person survived or not based on their age, ticket class, and other information.
