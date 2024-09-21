@@ -1,0 +1,29 @@
+import numpy as np
+import matplotlib.pyplot as plt
+import random
+
+n = 100000 #defining number of steps
+x = np.zeros(n)
+
+for i in range(1, n):
+  val = random.randint(1,2)
+
+  if val == 1:
+    x[i] = x[i - 1] +1 #dot moves x coordinate + 1
+  else:
+    x[i] = x[i - 1] -1 #dot moves x coordinate - 1
+
+plt.figure(figsize=(10, 6))  # Increase figure size
+plt.plot(x, color='blue', lw=2, alpha=0.7)  # Line with transparency
+plt.scatter(0, x[0], c='green', s=100, label='Start')  # Mark start point
+plt.scatter(n-1, x[-1], c='red', s=100, label='End')  # Mark end point
+
+plt.title('1D Random Walk', fontsize=16)
+plt.xlabel('Steps')
+plt.ylabel('Position')
+plt.grid(True)
+plt.legend()
+
+plt.savefig('1D random_walk.png')
+plt.show()
+
